@@ -1,0 +1,9 @@
+[Unit]
+Description=User-defined custom VNF
+
+[Service]
+Type=simple
+ExecStart=/opt/custom.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,72 @@
+<div class="flex-container">
+
+  <div>
+
+    <h1>{{ authService.givenName }}</h1>
+    <h2>Edit user information and supported traffic types</h2>
+  </div>
+
+  <div style="margin: 20px;">
+    <form [formGroup]="trafficTypeFormGroup" style="margin-left: 0;">
+      <ng-template matStepLabel>Traffic Type Configuration</ng-template>
+      <br/>
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field>
+        <mat-label>IP Address Range</mat-label>
+        <input matInput placeholder="10.10.10.0/24" formControlName="address">
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div style="align-self: center; margin:40px;">
+    <button  type="button" class="btn btn-dark" (click)="addTrafficType()">+ Add Traffic Type</button>
+    <button type="button" class="btn btn-outline-dark" (click)="deleteSelectedTrafficTypes()">Delete selected Traffic Type(s)</button>
+  </div>
+
+  <mat-card style="width: 40%;">
+
+      <h3>Supported traffic types:</h3>
+      <mat-table #table [dataSource]="configuredTrafficTypesDatasource">
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let trafficType"> {{trafficType.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Address Column -->
+        <ng-container matColumnDef="address">
+          <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+          <mat-cell *matCellDef="let trafficType"> {{trafficType.ipAddress}} </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+                 (click)="selection.toggle(row)">
+        </mat-row>
+      </mat-table>
+  </mat-card>
+
+</div>

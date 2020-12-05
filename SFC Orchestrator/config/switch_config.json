@@ -1,0 +1,12 @@
+{
+  "ingress-switch": {
+      "cloud_ip_address": "192.168.122.50",
+      "p4runtime_address": "192.168.122.50:50051",
+      "ingress_port": 1,
+      "ingress_nexthop": "0c:21:c5:7f:5f:00",
+      "egress_port": 2,
+      "egress_nexthop": "0c:21:c5:bf:c6:00",
+      "cloud_port": 3,
+      "mpls_label": 50
+  }
+}

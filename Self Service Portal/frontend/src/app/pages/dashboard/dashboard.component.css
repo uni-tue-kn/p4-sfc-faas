@@ -1,0 +1,40 @@
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  min-height: 400px;
+  flex-direction: row;
+}
+
+.vnfs{
+  float: left;
+  overflow: auto;
+  max-height: 500px;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.vnf-configurator-container {
+  width: 60%;
+
+}
+
+h1 {
+  font-size: 50px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 60px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #777777;
+  letter-spacing: 1px;
+  font-weight: lighter;
+  width: 100%;
+}
+

@@ -1,0 +1,9 @@
+[Unit]
+Description=User-defined Test VNF
+
+[Service]
+Type=simple
+ExecStart=/opt/test.sh
+
+[Install]
+WantedBy=multi-user.target

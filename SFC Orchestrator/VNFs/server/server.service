@@ -1,0 +1,9 @@
+[Unit]
+Description=User-defined Server VNF
+
+[Service]
+Type=simple
+ExecStart=/opt/server.sh
+
+[Install]
+WantedBy=multi-user.target

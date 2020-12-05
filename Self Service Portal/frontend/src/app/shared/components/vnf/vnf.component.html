@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="vnf-card-body">
+    <!-- <img *ngIf="this.vnfConfig.serviceType != 'firewall' && this.vnfConfig.serviceType != 'nat' && this.vnfConfig.serviceType != 'ids' " src="assets/img/Nat-icon.png"> -->
+    <img *ngIf="this.vnfConfig.serviceType == 'firewall'" src="assets/img/Firewall-icon.png">
+    <img *ngIf="this.vnfConfig.serviceType == 'nat'" src="assets/img/Nat-icon.png">
+    <img *ngIf="this.vnfConfig.serviceType == 'ids'" src="assets/img/Ids-icon.png">
+    <div>{{ this.vnfConfig.applicationName }}</div>
+  </div>
+
+
+
+
+</div>

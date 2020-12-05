@@ -1,0 +1,9 @@
+[Unit]
+Description=User-defined Intrusion-detection Service (IDS) application VNF
+
+[Service]
+Type=simple
+ExecStart=/opt/ids.sh
+
+[Install]
+WantedBy=multi-user.target

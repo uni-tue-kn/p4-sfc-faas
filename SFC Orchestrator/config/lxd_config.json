@@ -1,0 +1,9 @@
+{
+  "name": "default-container",
+  "source": { "type": "image",
+              "alias": "orch-template"},
+  "config": { "limits.cpu": "1",
+              "limits.memory" : "1GB",
+              "security.privileged" : "true",
+              "raw.lxc" : "lxc.apparmor.profile = unconfined"}
+}

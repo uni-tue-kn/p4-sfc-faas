@@ -1,0 +1,9 @@
+[Unit]
+Description=User-defined NAT VNF
+
+[Service]
+Type=simple
+ExecStart=/opt/nat.sh
+
+[Install]
+WantedBy=multi-user.target

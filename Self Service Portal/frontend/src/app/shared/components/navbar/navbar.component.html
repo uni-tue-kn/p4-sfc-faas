@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-light">
+  <a class="navbar-brand" routerLink="/home">
+    <img src="assets/img/SFC-Cloud.png" width="120" height="50">
+  </a>
+  <!--<div style="color: goldenrod; float: left">ENV: {{envName}}</div>-->
+
+  <button class="navbar-toggler" type="button"
+          (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse"
+       [ngClass]="{ 'show': navbarOpen }">
+
+    <ul *ngIf="authService.isLoggedIn()" class="navbar-nav mr-auto" style="margin-left: 25px">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/vnf-configurator">VNF Configurator</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/sfc-configurator">SFC Configurator</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+      </li>
+    </ul>
+
+    <ul *ngIf="!authService.isLoggedIn()" class="navbar-nav mr-auto">
+    </ul>
+
+    <span class="navbar-text cdk-visually-hidden" *ngIf="!authService.isLoggedIn()" style="padding-right: 20px;">
+      <button type="button" class="btn btn-outline-dark" routerLink="/register">Register</button>
+    </span>
+
+    <span class="navbar-text" *ngIf="!authService.isLoggedIn()" >
+      <button type="button" class="btn btn-dark" (click)="authService.login()">Login</button>
+    </span>
+
+    <span class="navbar-text" *ngIf="authService.isLoggedIn()" style="padding-right: 20px; font-size: 18px;">
+      <button type="button" class="btn btn-outline-dark" routerLink="user">
+        <img src="assets/img/personIcon.png" width="15" height="15" alt=""> {{ authService.givenName }}
+      </button>
+    </span>
+
+    <span class="navbar-text" *ngIf="authService.isLoggedIn()">
+      <button type="button" class="btn btn-dark" (click)="authService.logout()">Logout</button>
+    </span>
+
+
+  </div>
+</nav>

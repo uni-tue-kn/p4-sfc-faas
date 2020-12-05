@@ -1,0 +1,10 @@
+[Unit]
+Description=User-defined firewall VNF
+
+[Service]
+Type=simple
+ExecStart=/opt/firewall.sh
+
+[Install]
+WantedBy=multi-user.target
+

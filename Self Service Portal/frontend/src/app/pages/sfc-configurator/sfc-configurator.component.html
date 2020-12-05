@@ -1,0 +1,55 @@
+<div class="flex-container">
+  <div class="sfc-configurator-container">
+    <h1>SFC Configurator</h1>
+    <h2>Define a custom Service Function Chain for your network traffic via Drag & Drop</h2>
+
+
+    <div class="sfcconfigurator">
+      <div>
+        <p style="margin-bottom: 0; font-weight: bold;">Traffic Type</p>
+        <div class="traffic-type">
+          <mat-form-field style="width: 80%;">
+            <mat-select [(value)]="selectedTrafficType">
+              <mat-option *ngFor="let trafficType of this.unusedTrafficTypes" [value]="trafficType">
+                {{trafficType.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div cdkDropList #sfcList="cdkDropList"
+           cdkDropListOrientation="horizontal"
+           [cdkDropListData]="this.vnfsInSfc"
+           [cdkDropListConnectedTo]="[sfcList, vnfList]"
+           class="item-list card-body"
+           (cdkDropListDropped)="dropVnfConfig($event)">
+        <div class="item-box" *ngFor="let item of this.vnfsInSfc" cdkDrag><app-vnf [vnfConfig]=item [deletable]=false></app-vnf></div>
+      </div>
+
+
+      <div>
+        <p style="margin-bottom: 0; font-weight: bold; margin-left: 30px;">Direction</p>
+        <div class="traffic-direction">OUT</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn btn-dark" (click)="applySFC()">Apply SFC Configuration</button>
+  </div>
+
+  <app-vnf-inventory cdkDropList #vnfList="cdkDropList"
+                     cdkDropListOrientation="horizontal"
+                     [cdkDropListData]="this.configService.vnfInventory"
+                     [cdkDropListConnectedTo]="[vnfList, sfcList]"
+                     (cdkDropListDropped)="dropVnfConfig($event)"
+                     draggableItems=true ></app-vnf-inventory>
+
+
+</div>
+
+
+
+
+

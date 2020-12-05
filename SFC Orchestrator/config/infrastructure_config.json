@@ -1,0 +1,25 @@
+{
+   "1":
+      {
+         "hostname": "machine-1",
+         "username": "osboxes",
+         "ip_address": "192.168.122.10",
+         "hypervisor": "qemu+ssh://osboxes@192.168.122.10/system?no_verify=1",
+         "lxd_daemon": "https://192.168.122.10:8443",
+         "mpls_label": 100,
+         "net_iface_out": "ens3",
+         "MAC_address": "0c:21:c5:da:70:00"
+      },
+
+   "2":
+      {
+         "hostname": "machine-2",
+         "username": "osboxes",
+         "ip_address": "192.168.122.20",
+         "hypervisor": "qemu+ssh://osboxes@192.168.122.20/system?no_verify=1",
+         "lxd_daemon": "https://192.168.122.20:8443",
+         "mpls_label": 200,
+         "net_iface_out": "ens3",
+         "MAC_address": "0c:21:c5:b9:2d:00"
+      }
+}

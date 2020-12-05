@@ -1,0 +1,333 @@
+pkg_info {
+  arch: "v1model"
+}
+tables {
+  preamble {
+    id: 33592552
+    name: "MyIngress.customer_lpm"
+    alias: "customer_lpm"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.srcAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 16841440
+  }
+  action_refs {
+    id: 16785237
+  }
+  action_refs {
+    id: 16782239
+  }
+  action_refs {
+    id: 16805608
+  }
+  action_refs {
+    id: 16800567
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33580612
+    name: "MyIngress.customer_lpm_backwards"
+    alias: "customer_lpm_backwards"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 16841440
+  }
+  action_refs {
+    id: 16785237
+  }
+  action_refs {
+    id: 16782239
+  }
+  action_refs {
+    id: 16805608
+  }
+  action_refs {
+    id: 16800567
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33574068
+    name: "MyIngress.ipv4_lpm"
+    alias: "ipv4_lpm"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 16799317
+  }
+  action_refs {
+    id: 16805608
+  }
+  action_refs {
+    id: 16800567
+  }
+  action_refs {
+    id: 16821746
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33608429
+    name: "MyIngress.mpls_exact"
+    alias: "mpls_exact"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.mpls[0].label"
+    bitwidth: 20
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16779844
+  }
+  action_refs {
+    id: 16797590
+  }
+  action_refs {
+    id: 16797023
+  }
+  action_refs {
+    id: 16812342
+  }
+  action_refs {
+    id: 16805608
+  }
+  action_refs {
+    id: 16800567
+  }
+  size: 1024
+}
+actions {
+  preamble {
+    id: 16800567
+    name: "NoAction"
+    alias: "NoAction"
+  }
+}
+actions {
+  preamble {
+    id: 16805608
+    name: "MyIngress.drop"
+    alias: "drop"
+  }
+}
+actions {
+  preamble {
+    id: 16799317
+    name: "MyIngress.ipv4_forward"
+    alias: "ipv4_forward"
+  }
+  params {
+    id: 1
+    name: "dstAddr"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16841440
+    name: "MyIngress.mpls_add_segment_routing_stack_1"
+    alias: "mpls_add_segment_routing_stack_1"
+  }
+  params {
+    id: 1
+    name: "label1"
+    bitwidth: 20
+  }
+  params {
+    id: 2
+    name: "label2"
+    bitwidth: 20
+  }
+  params {
+    id: 3
+    name: "label3"
+    bitwidth: 20
+  }
+  params {
+    id: 4
+    name: "label4"
+    bitwidth: 20
+  }
+}
+actions {
+  preamble {
+    id: 16785237
+    name: "MyIngress.mpls_add_segment_routing_stack_2"
+    alias: "mpls_add_segment_routing_stack_2"
+  }
+  params {
+    id: 1
+    name: "label1"
+    bitwidth: 20
+  }
+  params {
+    id: 2
+    name: "label2"
+    bitwidth: 20
+  }
+  params {
+    id: 3
+    name: "label3"
+    bitwidth: 20
+  }
+  params {
+    id: 4
+    name: "label4"
+    bitwidth: 20
+  }
+  params {
+    id: 5
+    name: "label5"
+    bitwidth: 20
+  }
+  params {
+    id: 6
+    name: "label6"
+    bitwidth: 20
+  }
+}
+actions {
+  preamble {
+    id: 16782239
+    name: "MyIngress.mpls_add_segment_routing_stack_3"
+    alias: "mpls_add_segment_routing_stack_3"
+  }
+  params {
+    id: 1
+    name: "label1"
+    bitwidth: 20
+  }
+  params {
+    id: 2
+    name: "label2"
+    bitwidth: 20
+  }
+  params {
+    id: 3
+    name: "label3"
+    bitwidth: 20
+  }
+  params {
+    id: 4
+    name: "label4"
+    bitwidth: 20
+  }
+  params {
+    id: 5
+    name: "label5"
+    bitwidth: 20
+  }
+  params {
+    id: 6
+    name: "label6"
+    bitwidth: 20
+  }
+  params {
+    id: 7
+    name: "label7"
+    bitwidth: 20
+  }
+  params {
+    id: 8
+    name: "label8"
+    bitwidth: 20
+  }
+}
+actions {
+  preamble {
+    id: 16779844
+    name: "MyIngress.mpls_forward"
+    alias: "mpls_forward"
+  }
+  params {
+    id: 1
+    name: "dstAddr"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16797590
+    name: "MyIngress.mpls_pop"
+    alias: "mpls_pop"
+  }
+}
+actions {
+  preamble {
+    id: 16797023
+    name: "MyIngress.mpls_pop_and_forward"
+    alias: "mpls_pop_and_forward"
+  }
+  params {
+    id: 1
+    name: "dstAddr"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16812342
+    name: "MyIngress.mpls_finish"
+    alias: "mpls_finish"
+  }
+  params {
+    id: 1
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16821746
+    name: "MyIngress.default_ipv4_egress"
+    alias: "default_ipv4_egress"
+  }
+  params {
+    id: 1
+    name: "dstAddr"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+type_info {
+}

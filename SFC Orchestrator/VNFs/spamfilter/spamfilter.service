@@ -1,0 +1,9 @@
+[Unit]
+Description=User-defined Spamfilter VNF
+
+[Service]
+Type=simple
+ExecStart=/opt/spamfilter.sh
+
+[Install]
+WantedBy=multi-user.target

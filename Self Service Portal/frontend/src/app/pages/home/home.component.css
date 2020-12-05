@@ -1,0 +1,84 @@
+.home-flex-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #FFFFFF;
+  min-height: 400px;
+  overflow: auto;
+}
+
+.home-unauthenticated {
+  width: 100%;
+}
+
+.home-authenticated {
+  width: 100%;
+}
+
+h1 {
+  font-size: 100px;
+  line-height: 1.2;
+  letter-spacing: 7px;
+  float: right;
+  font-weight: bold;
+  margin-right: 60px;
+}
+
+h2 {
+  font-size: 70px;
+  line-height: 1.2;
+  letter-spacing: 7px;
+  float: right;
+  font-weight: bold;
+  margin-right: 40px;
+}
+
+img {
+  float: left;
+  width: 400px;
+  height: 250px;
+  margin-left: 60px;
+}
+
+
+.home-title {
+  width: 50%;
+  margin-top: 90px;
+  float: left;
+}
+
+
+.home-logo {
+  width: 50%;
+  margin-top: 90px;
+  float: left;
+
+}
+
+.home-subtitle {
+  width: 400px;
+  height: 200px;
+  float: top;
+  font-size: 26px;
+  line-height: 1;
+  margin-top: 285px;
+  margin-left: 70px;
+  color: rgba(119, 119, 119, 0.65);
+}
+
+.home-button-container {
+  padding-top: 90px; margin-left: 15%; margin-right: 15%; width:70%; display: flex; justify-content: space-evenly ;
+}
+
+.btn-dark {
+  width: 250px;
+  height: 50px;
+}
+
+p {
+  width: 250px;
+  font-size: 21px;
+  color: #777777;
+  text-align: justify;
+  margin-top: 10px;
+}

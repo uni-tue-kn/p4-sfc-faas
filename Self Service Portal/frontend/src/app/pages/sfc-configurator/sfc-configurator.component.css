@@ -1,0 +1,118 @@
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  min-height: 400px;
+  flex-direction: column;
+}
+
+.sfc-configurator-container {
+  width: 60%;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: 7px;
+  font-weight: bold;
+  margin-top: 60px;
+  width: 100%;
+}
+
+h2 {
+  font-size: 24px;
+  color: #777777;
+  letter-spacing: 1px;
+  font-weight: lighter;
+  margin-right: 40px;
+}
+
+.card-body {
+  max-width: 100%;
+  width: 100%;
+  min-height: 220px;
+  border: dashed 1px black;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.item-box {
+  cursor: move;
+  height: border-box;
+}
+
+.traffic-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #777777 solid 1px;
+  border-radius: 10px;
+  height: 80px;
+  width: 150px;
+  margin-right: 30px;
+}
+
+.traffic-direction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #777777 solid 1px;
+  border-radius: 10px;
+  height: 80px;
+  width: 150px;
+  margin-left: 30px;
+}
+
+
+.cdk-drag-placeholder {
+  opacity: 90%;
+}
+
+.cdk-drag-preview {
+
+}
+
+.cdk-drag-animating {
+  transition: transform 200ms ease;
+  box-sizing: border-box;
+}
+
+.item-list.cdk-drop-list-dragging .item-box:not(.cdk-drag-placeholder) {
+  transition: transform 200ms ease;
+}
+
+.section-heading {
+  padding: 5px 10px;
+  font-size: 25px;
+  font-weight: bold;
+
+}
+
+.sfcString{
+  font-size: 16px;
+}
+
+.sfcconfigurator {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 60px;
+  align-items: center;
+  border-radius: 20px;
+
+}
+
+button{
+  margin: 40px;
+  width: 300px;
+  height: 70px;
+}
+
+app-vnf-inventory {
+  margin-top: 30px;
+  width: 60%;
+}

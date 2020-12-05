@@ -1,0 +1,9 @@
+[Unit]
+Description= User-defined PacketSniffer VNF
+
+[Service]
+Type=simple
+ExecStart=/opt/packetsniffer.sh
+
+[Install]
+WantedBy=multi-user.target

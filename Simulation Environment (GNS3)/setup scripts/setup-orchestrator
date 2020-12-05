@@ -1,0 +1,79 @@
+sudo apt install qemu-kvm libvirt-bin
+sudo apt install python-libvirt
+
+# source environment variable definitions
+source .env
+
+# Disable cloud init
+sudo touch /etc/cloud/cloud-init.disabled
+
+# Create network interface configuration
+sudo mv /etc/netplan/50-cloud-init.yaml /etc/netplan/01-netcfg.yaml
+
+echo "network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens3:
+      dhcp4: no
+      addresses: [$ORCHESTRATOR_INNER_IP/24]   
+      gateway4: $NAT_IP
+      nameservers:
+        addresses: [$NAT_IP]
+    ens4:
+      dhcp4: no
+      addresses: [$ORCHESTRATOR_OUTER_IP/24]   
+      gateway4: $P4SWITCH_INNER_IP
+      nameservers:
+         addresses: [$NAT_IP]" >> 01-netcfg.yaml
+
+sudo mv 01-netcfg.yaml /etc/netplan/01-netcfg.yaml
+
+sudo netplan apply
+
+cp /etc/hosts hostedit
+echo "$MACHINE1_IP machine1
+$MACHINE2_IP machine2
+$MACHINE3_IP machine3" >> hostedit
+sudo mv hostedit /etc/hosts
+
+#enable IPv4 forwarding so that P4 ingress switch can reach machine{1-3}
+sudo sysctl net.ipv4.ip_forward=1
+
+# Install dependencies
+sudo apt install -y python
+sudo apt install -y python-pip
+sudo apt install -y qemu-kvm libvirt-bin
+sudo apt install -y python-libvirt
+
+sudo apt install -y nfs-kernel-server
+
+pip install pylxd
+pip install inotify
+
+lxd init
+
+# You must run ‘lxd init’ as root. ‘lxc’ commands can be run as any user who is a member of group lxd. If user joe is not a member of group ‘lxd’, you may run:
+
+# adduser joe lxd
+# The following setting should be set for the lxd init command:
+
+# Would you like to use LXD clustering? (yes/no) [default=no]: no
+# Do you want to configure a new storage pool? (yes/no) [default=yes]: yes
+# Name of the new storage pool [default=default]: default
+# Name of the storage backend to use (dir, lvm) [default=dir]: dir
+# Would you like to connect to a MAAS server? (yes/no) [default=no]: no
+# Would you like to create a new local network bridge? (yes/no) [default=yes]: yes
+# What should the new bridge be called? [default=lxdbr0]: lxdbr0
+# What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]: auto
+# What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]: auto
+# Would you like LXD to be available over the network? (yes/no) [default=no]: yes
+# Address to bind LXD to (not including port) [default=all]: all
+# Port to bind LXD to [default=8443]: 8443
+# Trust password for new clients: trust
+# Again: trust
+# Would you like stale cached images to be updated automatically? (yes/no) [default=yes] no
+# Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]: no
+
+# Install new Linux kernel
+sudo apt install --install-recommends linux-generic-hwe-18.04

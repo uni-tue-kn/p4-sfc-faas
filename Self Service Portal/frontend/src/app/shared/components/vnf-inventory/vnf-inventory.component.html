@@ -1,0 +1,11 @@
+<div class="card vnfInventory">
+  <mat-card-header style="justify-self: center; align-self: center;"><h1>VNF Inventory ▼</h1></mat-card-header>
+
+
+  <div class="card-body">
+    <div class="vnf" *ngFor="let conf of this.configService.vnfInventory" cdkDrag>
+      <app-vnf [vnfConfig]=conf style="cursor: move;"></app-vnf>
+
+    </div>
+  </div>
+</div>

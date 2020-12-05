@@ -1,0 +1,35 @@
+.card{
+  overflow: visible;
+  width: 200px;
+  height: 150px;
+  margin: 10px;
+}
+
+.close.mat-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  line-height: 20px;
+  min-width: 30px;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.close.mat-button:focus {
+  display: none;
+}
+
+.vnf-card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-justify: auto;
+}
+
+img {
+  margin: 15px;
+  width: 80px;
+  height: 80px;
+}

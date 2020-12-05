@@ -1,0 +1,50 @@
+<div class="home-flex-container">
+  <div *ngIf="authService.isLoggedIn()" class="home-authenticated">
+
+    <div class="home-title" style="margin-top: 70px;">
+      <h2>Welcome <br> {{ authService.givenName }}!</h2>
+    </div>
+
+    <div class="home-logo" style="margin-top: 70px;">
+      <img style="width: 320px; height: 200px; margin-left: 40px;" src="assets/img/SFC-Logo-Landing-Page.png">
+    </div>
+
+    <div class="home-button-container">
+      <div>
+        <button type="button" class="btn btn-dark" routerLink="/vnf-configurator"> ➜ VNF Configurator </button>
+        <p>Define custom Virtual Network Functions</p>
+      </div>
+
+      <div>
+        <button type="button" class="btn btn-dark" routerLink="/sfc-configurator"> ➜ SFC Configurator</button>
+        <p>Configure Service Function Chains for your Network
+        </p>
+      </div>
+
+      <div>
+        <button type="button" class="btn btn-dark" routerLink="/dashboard"> ➜ Dashboard</button>
+        <p>Display all your custom VNFs and active SFCs </p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div *ngIf="!authService.isLoggedIn()" class="home-unauthenticated">
+    <div class="home-title">
+      <h1> Self- <br> Service <br> Portal</h1>
+    </div>
+
+    <div class="home-logo">
+      <img src="assets/img/SFC-Logo-Landing-Page.png" >
+      <p class="home-subtitle">Define custom Network Services and
+        Service Function Chains</p>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+

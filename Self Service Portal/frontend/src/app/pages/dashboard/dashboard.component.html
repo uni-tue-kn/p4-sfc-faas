@@ -1,0 +1,29 @@
+<div class="flex-container">
+  <div class="vnf-configurator-container">
+    <h1>Dashboard</h1>
+    <h2>Overview your custom VNFs and active Service Function Chains</h2>
+
+    <div class="card" style="float: left; overflow: auto; max-height: 500px; width: 100%; max-width: 100%; margin-bottom: 20px;">
+      <h2> Active SFCs: </h2>
+      <div *ngFor="let sfc of this.configService.sfcConfigs" style="margin: 5px;">
+        <button class="close" color="warn" mat-button (click)="this.deleteSFC(sfc)">&times;</button>
+        <app-sfc-visual [sfcConfig]="sfc"></app-sfc-visual>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="card" style="margin-top: 20px;">
+      <h2> Custom VNFs: </h2>
+      <div class="vnfs">
+        <div *ngFor="let vnf of this.configService.vnfConfigs" style="float: left; width: fit-content">
+          <button class="close" color="warn" mat-button (click)="deleteVNF(vnf)">&times;</button>
+          <app-vnf [vnfConfig]=vnf></app-vnf>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

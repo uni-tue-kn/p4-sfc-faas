@@ -1,0 +1,43 @@
+{
+    "120": {
+        "owner": "c6f63de5-5e2f-44d7-8b9f-c9d646f3ff67",
+        "trafficType": {
+            "id": 70,
+            "owner": "c6f63de5-5e2f-44d7-8b9f-c9d646f3ff67",
+            "name": "KundeC",
+            "ipAddress": "10.10.10.11/32"
+        },
+        "vnfs": [
+            {
+                "id": 26,
+                "owner": "c6f63de5-5e2f-44d7-8b9f-c9d646f3ff67",
+                "applicationName": "dummy1",
+                "serviceType": "packetsniffer",
+                "bidirectional": "FALSE",
+                "virtualization": "container",
+                "vcpus": 1,
+                "vmemory": 1,
+                "firewallRules": "None"
+            },
+            {
+                "id": 27,
+                "owner": "c6f63de5-5e2f-44d7-8b9f-c9d646f3ff67",
+                "applicationName": "ICMP-Firewall",
+                "serviceType": "firewall",
+                "bidirectional": "FALSE",
+                "virtualization": "container",
+                "vcpus": 1,
+                "vmemory": 1,
+                "firewallRules": [
+                    {
+                        "name": "Deny ICMP",
+                        "policy": "DENY",
+                        "direction": "BOTH",
+                        "protocol": "ICMP",
+                        "port": 0
+                    }
+                ]
+            }
+        ]
+    }
+}

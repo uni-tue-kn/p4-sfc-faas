@@ -1,0 +1,28 @@
+.flex-container {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  min-height: 400px;
+  flex-direction: column;
+}
+
+button {
+  margin: 10px;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: 7px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 30px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #777777;
+  letter-spacing: 1px;
+  font-weight: lighter;
+  margin-right: 40px;
+}

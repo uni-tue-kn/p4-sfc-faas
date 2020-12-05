@@ -1,0 +1,17 @@
+.card-body{
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 20px;
+  min-height: 200px;
+}
+
+.vnfInventory {
+  background-color: whitesmoke;
+}
+
+.vnfInventory.cdk-drop-list-dragging .item-box:not(.cdk-drag-placeholder) {
+  transition: transform 200ms ease;
+}

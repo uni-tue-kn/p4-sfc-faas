@@ -1,0 +1,38 @@
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  min-height: 400px;
+}
+
+.vnf-configurator-container {
+  width: 60%;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: 7px;
+  font-weight: bold;
+  margin-top: 60px;
+  width: 100%;
+}
+
+h2 {
+  font-size: 24px;
+  color: #777777;
+  letter-spacing: 1px;
+  font-weight: lighter;
+  margin-right: 40px;
+}
+
+mat-card {
+  margin-top: 50px;
+  border-width: 2px;
+}
+
+form {
+  margin-left: 40%;
+}
+

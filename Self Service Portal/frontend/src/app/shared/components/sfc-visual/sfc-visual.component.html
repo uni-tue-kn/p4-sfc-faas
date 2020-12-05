@@ -1,0 +1,18 @@
+<mat-card class="card-body">
+  <div style="border: #B8B8B8 solid 1px; border-radius: 5px; margin: 5px; margin-right: 20px; width: fit-content; float: left; height: fit-content; align-self: center">
+    <p style="align-self: center; margin: 10px;">{{ this.trafficType.name }}</p>
+  </div>
+
+  <p style="float: left; align-self: center; font-size: 50px; margin-right: 20px; ">&rarr;</p>
+
+  <div *ngFor="let vnf of vnfs" style=" margin: 5px; margin-right: 20px; float: left; width: fit-content; height: fit-content; align-self: center">
+    <app-vnf [vnfConfig]=vnf></app-vnf>
+  </div>
+
+  <p style="float: left; align-self: center; font-size: 50px; margin-right: 20px; ">&rarr;</p>
+
+  <p style="float: left; align-self: center; font-size: 18px; margin-right: 20px; ">OUT</p>
+</mat-card>
+
+
+

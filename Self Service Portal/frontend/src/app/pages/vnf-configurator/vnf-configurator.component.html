@@ -1,0 +1,261 @@
+<div class="flex-container">
+  <div class="vnf-configurator-container">
+    <h1>VNF Configurator</h1>
+    <h2>Define a custom Virtual Network Function that can be used in a Service Function Chain</h2>
+
+    <mat-card>
+      <mat-horizontal-stepper [linear]="isLinear" #stepper style="min-height: 300px; ">
+
+        <!-- TODO: NO HARDCODED LIST OF AVAILABLE TYPES! GET DYNAMICALLY! -->
+        <mat-step [stepControl]="vnfTypeFormGroup">
+          <form [formGroup]="vnfTypeFormGroup">
+            <ng-template matStepLabel>VNF Type</ng-template>
+
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+
+            <br/>
+
+            <mat-form-field>
+              <mat-label>Type</mat-label>
+              <mat-select formControlName="type">
+                <mat-option value="firewall">Firewall</mat-option>
+                <mat-option value="ids" disabled>IDS</mat-option>
+                <mat-option value="packetsniffer" disabled>Packetsniffer</mat-option>
+                <mat-option value="spamfilter" disabled>Spamfilter</mat-option>
+                <mat-option value="nat" disabled>NAT</mat-option>
+                <mat-option value="custom">Custom</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div style="float: bottom">
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step *ngIf="vnfTypeFormGroup.get('type').value === 'firewall'" [stepControl]="firewallFormGroup">
+          <form [formGroup]="firewallFormGroup" style="margin-left: 0;">
+            <ng-template matStepLabel>Firewall Configuration</ng-template>
+            <br/>
+
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+              <mat-label>Policy</mat-label>
+              <mat-select formControlName="policy">
+                <mat-option value="DENY">DENY</mat-option>
+                <mat-option value="ALLOW">ALLOW</mat-option>
+              </mat-select>
+            </mat-form-field>
+            &nbsp;
+            <!--<mat-form-field>
+              <mat-label>Direction</mat-label>
+              <mat-select formControlName="direction">
+                <mat-option value="IN">IN</mat-option>
+                <mat-option value="OUT">OUT</mat-option>
+                <mat-option value="BOTH">BOTH</mat-option>
+              </mat-select>
+            </mat-form-field>-->
+            &nbsp;
+            <mat-form-field>
+              <mat-label>Protocol</mat-label>
+              <mat-select formControlName="protocol">
+                <mat-option value="TCP">TCP</mat-option>
+                <mat-option value="UDP">UDP</mat-option>
+                <mat-option value="ICMP">ICMP</mat-option>
+                <mat-option value="ALL">ALL</mat-option>
+              </mat-select>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+              <mat-label>Port</mat-label>
+              <input matInput placeholder="Port" formControlName="port">
+            </mat-form-field>
+
+            <br/>
+            <br/>
+
+            <div>
+              <button mat-button (click)="addFirewallRule()">Add Firewall Rule</button>
+              <button mat-button (click)="deleteSelectedFirewallRules()">Delete selected Firewall Rule(s)</button>
+            </div>
+
+
+
+            <!-- List of all active Firewall Rules-->
+            <div class="example-container mat-elevation-z8" style="margin-top: 20px; margin-bottom: 20px;">
+              <h2 style="text-align: left">Firewall Rules:</h2>
+              <mat-table #table [dataSource]="configuredRulesDatasource">
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                  <mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let firewallRule"> {{firewallRule.name}} </mat-cell>
+                </ng-container>
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="policy">
+                  <mat-header-cell *matHeaderCellDef> Policy </mat-header-cell>
+                  <mat-cell *matCellDef="let firewallRule"> {{firewallRule.policy}} </mat-cell>
+                </ng-container>
+
+                <!-- Direction Column -->
+                <!--
+                <ng-container matColumnDef="direction">
+                  <mat-header-cell *matHeaderCellDef> Direction </mat-header-cell>
+                  <mat-cell *matCellDef="let firewallRule"> {{firewallRule.direction}} </mat-cell>
+                </ng-container>
+                -->
+                <!-- Protocol Column -->
+                <ng-container matColumnDef="protocol">
+                  <mat-header-cell *matHeaderCellDef> Protocol </mat-header-cell>
+                  <mat-cell *matCellDef="let firewallRule"> {{firewallRule.protocol}} </mat-cell>
+                </ng-container>
+
+                <!-- Port Column -->
+                <ng-container matColumnDef="port">
+                  <mat-header-cell *matHeaderCellDef> Port </mat-header-cell>
+                  <mat-cell *matCellDef="let firewallRule"> {{firewallRule.port}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"
+                         (click)="selection.toggle(row)">
+                </mat-row>
+              </mat-table>
+            </div>
+
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step *ngIf="vnfTypeFormGroup.get('type').value != 'firewall'" [stepControl]="customFormGroup">
+          <form [formGroup]="customFormGroup">
+            <ng-template matStepLabel>Custom Configuration</ng-template>
+
+              <mat-label>Bidirectional? </mat-label>
+              <mat-checkbox formControlName="bidirectional"></mat-checkbox>
+              <br/>
+            <mat-form-field>
+              <mat-label>Custom</mat-label>
+              <input matInput placeholder="Custom" formControlName="custom">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <form [formGroup]="requirementsFormGroup">
+            <ng-template matStepLabel>Compute Requirements</ng-template>
+            <mat-form-field>
+              <mat-label>Virtualization</mat-label>
+              <mat-select formControlName="virtualization">
+                <mat-option value="container">Container</mat-option>
+                <mat-option value="vm" disabled>VM</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+              <mat-label>vCPUs</mat-label>
+              <mat-select formControlName="vcpus">
+                <mat-option value=1>1</mat-option>
+                <mat-option value=2 disabled>2</mat-option>
+                <mat-option value=3 disabled>3</mat-option>
+                <mat-option value=4 disabled>4</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+              <mat-label>vMemory in GB</mat-label>
+              <mat-select formControlName="vmem">
+                <mat-option value=1>1</mat-option>
+                <mat-option value=2 disabled>2</mat-option>
+                <mat-option value=3 disabled>3</mat-option>
+                <mat-option value=4 disabled>4</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br/>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+
+          <table class="table">
+            <tr>
+              <th> Type: </th>
+              <td> {{ this.vnfTypeFormGroup.value.type }} </td>
+            </tr>
+            <tr *ngIf="vnfTypeFormGroup.value.type === 'firewall'">
+              <th> Configured Firewall Rules: </th>
+              <td> {{ this.firewallRules }} </td>
+            </tr>
+            <tr>
+              <th> Virtualization: </th>
+              <td> {{ this.requirementsFormGroup.value.virtualization }} </td>
+            </tr>
+            <tr>
+              <th> Bidirectional: </th>
+              <td> {{ this.customFormGroup.value.bidirectional }} </td>
+            </tr>
+            <tr>
+              <th> vCPUs: </th>
+              <td> {{ this.requirementsFormGroup.value.vcpus }} </td>
+            </tr>
+            <tr>
+              <th> vMemory: </th>
+              <td> {{ this.requirementsFormGroup.value.vmem }} GB </td>
+            </tr>
+          </table>
+
+          <div style="margin-top: 50px;">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="submit()">Submit</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+
+
+
+
+    </mat-card>
+  </div>
+</div>
+
+
+
+
+

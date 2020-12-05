@@ -1,0 +1,9 @@
+nav {
+  font-size: 18px;
+  width: 100%;
+  border-bottom: #bebec5;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  background-color: #FFFFFF;
+  z-index: 99;
+}
