@@ -6,8 +6,6 @@ The present thesis is part of a federal project in Baden-Wuerttemberg, called **
 This repository contains all resources related to the thesis, including documentation,
 code and configuration files. The repository is organized as follows.
 
-* <a href="/Abschlussarbeit">Abschlussarbeit</a>: The thesis document written in LaTeX, including all necessary LaTeX related files. 
-* <a href="/Presentation">Presentation</a>: The PowerPoint presentation incl important images lies here. So far, it is only an early draft but will evolve over time. Not all slides might be relevant for all occasions, therefore only subsets might be presented.   
 * <a href="/SFC%20Orchestrator">SFC Orchestrator</a>: The SFC orchestrator places VNFs on hosts and computes paths for SFCs based on SFC configuration provided by customers. It is based on the orchestrator from Stephan Hinselmann.
 * <a href="/Self%20Service%20Portal">Self Service Portal</a>: The Self Service Portal is a Webinterface for configuring SFCs in the "bwNETCloud". The frontend is written with Angular 9 and the Backend is based on Python Django. All files related to the Self Service Portal are organized in this folder.
 * <a href="/Simulation%20Environment%20(GNS3)">Simulation Environment (GNS3)</a>: Documentation, configuration files and scripts related to the worked out virtual simulation environment / virtual testbed. Graphical Network Simulator (GNS3) is utilized for this purpose. 
